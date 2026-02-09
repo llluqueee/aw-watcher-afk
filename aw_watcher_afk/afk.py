@@ -13,7 +13,7 @@ system = platform.system()
 
 if system == "Windows":
     # noreorder
-    from .windows import seconds_since_last_input  # fmt: skip
+    from .windows import seconds_since_last_input_with_audio  # fmt: skip
 elif system == "Darwin":
     # noreorder
     from .macos import seconds_since_last_input  # fmt: skip
@@ -83,9 +83,9 @@ class AFKWatcher:
                     break
 
                 now = datetime.now(timezone.utc)
-                seconds_since_input = seconds_since_last_input()
+                seconds_since_input = seconds_since_last_input_with_audio()
                 last_input = now - timedelta(seconds=seconds_since_input)
-                logger.debug(f"Seconds since last input: {seconds_since_input}")
+                logger.debug(f"seconds_since_last_input_with_audio: {seconds_since_input}")
 
                 # If no longer AFK
                 if afk and seconds_since_input < self.settings.timeout:

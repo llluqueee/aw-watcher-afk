@@ -35,7 +35,6 @@ def seconds_since_last_input():
 
 
 def is_audio_playing():
-    """Check if any audio is currently playing on the system."""
     try:
         sessions = AudioUtilities.GetAllSessions()
         for session in sessions:
@@ -49,10 +48,6 @@ def is_audio_playing():
 
 
 def seconds_since_last_input_with_audio():
-    """
-    Returns seconds since last input, but returns 0 if audio is playing.
-    This considers the user as "active" when audio is playing.
-    """
     if is_audio_playing():
         return 0.0
     return seconds_since_last_input()
